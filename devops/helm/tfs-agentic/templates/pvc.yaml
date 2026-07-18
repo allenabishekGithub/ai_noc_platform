@@ -1,0 +1,17 @@
+{{- if and .Values.persistence.faiss.enabled (not .Values.persistence.faiss.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "tfs-agentic.fullname" . }}-faiss
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    {{- toYaml .Values.persistence.faiss.accessModes | nindent 4 }}
+  {{- with .Values.persistence.faiss.storageClass }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.faiss.size | quote }}
+{{- end }}

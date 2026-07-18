@@ -1,0 +1,15 @@
+# Values for grafana/tempo. Suitable for a development/single-node cluster.
+tempo:
+  reportingEnabled: false
+  receivers:
+    otlp:
+      protocols:
+        grpc: {}
+        http: {}
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+serviceMonitor:
+  enabled: true

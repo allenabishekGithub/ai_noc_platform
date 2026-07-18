@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-module
+  labels:
+    app.kubernetes.io/name: agentic-module
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: agentic-module
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: agentic-module
+        app.kubernetes.io/part-of: tfs-agentic
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: agentic-module
+          image: tfs-agentic-agentic-module:dev
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: tfs-agentic-config
+            - secretRef:
+                name: tfs-agentic-secret
+          ports:
+            - containerPort: 8800
+              name: http
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 30
+          volumeMounts:
+            - name: faiss-index
+              mountPath: /app/faiss_index
+      volumes:
+        - name: faiss-index
+          persistentVolumeClaim:
+            claimName: faiss-index-pvc

@@ -1,0 +1,30 @@
+# Values used by Argo CD for the MicroK8s environment. Credentials are
+# deliberately excluded: create the referenced Secret before syncing.
+agent:
+  image:
+    repository: localhost:32000/tfs-agentic-agentic-module
+    tag: telemetry-22979a6
+    pullPolicy: Always
+
+mcp:
+  image:
+    repository: localhost:32000/tfs-agentic-tfs-mcp-server
+    tag: telemetry-22979a6
+    pullPolicy: Always
+
+config:
+  tfsNbiUrl: http://nbiservice.tfs.svc.cluster.local:8080
+  tfsNbiPrefix: /tfs-api
+  llmProvider: openai
+  llmModel: gpt-4o-mini
+  llmTemperature: "0.1"
+  a2aPeers: "http://172.31.44.44/agentic"
+  mcpServers: ""
+
+observability:
+  otlpEndpoint: opentelemetry-collector.observability.svc.cluster.local:4317
+
+secrets:
+  # This Secret is created outside Git by scripts/create-gitops-runtime-secret.sh
+  # or by a production secret manager such as External Secrets.
+  existingSecret: tfs-agentic-runtime

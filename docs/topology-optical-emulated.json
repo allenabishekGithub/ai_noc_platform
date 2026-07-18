@@ -1,0 +1,267 @@
+{
+    "contexts": [
+        {"context_id": {"context_uuid": {"uuid": "admin"}}}
+    ],
+    "topologies": [
+        {"topology_id": {"context_id": {"context_uuid": {"uuid": "admin"}}, "topology_uuid": {"uuid": "admin"}}}
+    ],
+    "devices": [
+        {
+            "device_id": {"device_uuid": {"uuid": "DC1"}}, "device_type": "emu-datacenter", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "eth0", "type": "copper"}, {"uuid": "int", "type": "copper"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "DC2"}}, "device_type": "emu-datacenter", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "eth0", "type": "copper"}, {"uuid": "int", "type": "copper"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "DC3"}}, "device_type": "emu-datacenter", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "eth0", "type": "copper"}, {"uuid": "int", "type": "copper"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "DC4"}}, "device_type": "emu-datacenter", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "eth0", "type": "copper"}, {"uuid": "int", "type": "copper"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "NET-EXT"}}, "device_type": "network", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "access0", "type": "copper"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "TP-DC1"}}, "device_type": "optical-transponder", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "client", "type": "copper"}, {"uuid": "line", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "TP-DC2"}}, "device_type": "optical-transponder", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "client", "type": "copper"}, {"uuid": "line", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "TP-DC3"}}, "device_type": "optical-transponder", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "client", "type": "copper"}, {"uuid": "line", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "TP-DC4"}}, "device_type": "optical-transponder", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "client", "type": "copper"}, {"uuid": "line", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "R1"}}, "device_type": "optical-roadm", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "adddrop1", "type": "optical"}, {"uuid": "101", "type": "optical"},
+                    {"uuid": "111", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "R2"}}, "device_type": "optical-roadm", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "adddrop1", "type": "optical"}, {"uuid": "111", "type": "optical"},
+                    {"uuid": "102", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "R3"}}, "device_type": "optical-roadm", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "adddrop1", "type": "optical"}, {"uuid": "111", "type": "optical"},
+                    {"uuid": "102", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "R4"}}, "device_type": "optical-roadm", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "adddrop1", "type": "optical"}, {"uuid": "111", "type": "optical"},
+                    {"uuid": "102", "type": "optical"}
+                ]}}}
+            ]}
+        },
+        {
+            "device_id": {"device_uuid": {"uuid": "R5"}}, "device_type": "optical-roadm", "device_drivers": ["DEVICEDRIVER_UNDEFINED"],
+            "device_config": {"config_rules": [
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/address", "resource_value": "127.0.0.1"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/port", "resource_value": "0"}},
+                {"action": "CONFIGACTION_SET", "custom": {"resource_key": "_connect/settings", "resource_value": {"endpoints": [
+                    {"uuid": "net", "type": "copper"}, {"uuid": "111", "type": "optical"},
+                    {"uuid": "102", "type": "optical"}
+                ]}}}
+            ]}
+        }
+    ],
+    "links": [
+        {"link_id": {"link_uuid": {"uuid": "DC1==TP-DC1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "DC1"}}, "endpoint_uuid": {"uuid": "eth0"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC1"}}, "endpoint_uuid": {"uuid": "client"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "DC2==TP-DC2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "DC2"}}, "endpoint_uuid": {"uuid": "eth0"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC2"}}, "endpoint_uuid": {"uuid": "client"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "DC3==TP-DC3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "DC3"}}, "endpoint_uuid": {"uuid": "eth0"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC3"}}, "endpoint_uuid": {"uuid": "client"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "DC4==TP-DC4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "DC4"}}, "endpoint_uuid": {"uuid": "eth0"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC4"}}, "endpoint_uuid": {"uuid": "client"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "NET-EXT==R5"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "NET-EXT"}}, "endpoint_uuid": {"uuid": "access0"}},
+            {"device_id": {"device_uuid": {"uuid": "R5"}}, "endpoint_uuid": {"uuid": "net"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC1==R1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC1"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC2==R2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC2"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC3==R3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC3"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC4==R4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC4"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R1==TP-DC1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "adddrop1"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC1"}}, "endpoint_uuid": {"uuid": "line"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R2==TP-DC2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "adddrop1"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC2"}}, "endpoint_uuid": {"uuid": "line"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R3==TP-DC3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "adddrop1"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC3"}}, "endpoint_uuid": {"uuid": "line"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R4==TP-DC4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "adddrop1"}},
+            {"device_id": {"device_uuid": {"uuid": "TP-DC4"}}, "endpoint_uuid": {"uuid": "line"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R1==R2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "101"}},
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R2==R3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R3==R4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R4==R5"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R5"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R5==R1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R5"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]}
+    ],
+    "optical_links": [
+        {"link_id": {"link_uuid": {"uuid": "TP-DC1==R1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC1"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC2==R2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC2"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC3==R3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC3"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "TP-DC4==R4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "TP-DC4"}}, "endpoint_uuid": {"uuid": "line"}},
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "adddrop1"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R1==R2"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "101"}},
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R2==R3"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R2"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R3==R4"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R3"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R4==R5"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R4"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R5"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]},
+        {"link_id": {"link_uuid": {"uuid": "R5==R1"}}, "link_endpoint_ids": [
+            {"device_id": {"device_uuid": {"uuid": "R5"}}, "endpoint_uuid": {"uuid": "102"}},
+            {"device_id": {"device_uuid": {"uuid": "R1"}}, "endpoint_uuid": {"uuid": "111"}}
+        ]}
+    ]
+}

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tfs-agentic
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: tfs-agentic
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: tfs-agentic
+  source:
+    repoURL: https://github.com/allenabishekGithub/ai_noc_platform.git
+    targetRevision: main
+    path: devops/helm/tfs-agentic
+    helm:
+      releaseName: tfs-agentic
+      valueFiles:
+        - values.gitops.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tfs-agentic
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

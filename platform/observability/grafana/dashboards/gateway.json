@@ -1,0 +1,28 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {
+      "title": "Ingress request rate",
+      "type": "timeseries",
+      "targets": [{"expr": "sum(rate(nginx_ingress_controller_requests{ingress=~\".*agent.*\"}[5m]))", "legendFormat": "requests/s", "refId": "A"}]
+    },
+    {
+      "title": "Ingress 5xx rate",
+      "type": "timeseries",
+      "targets": [{"expr": "sum(rate(nginx_ingress_controller_requests{ingress=~\".*agent.*\",status=~\"5..\"}[5m]))", "legendFormat": "5xx/s", "refId": "A"}]
+    },
+    {
+      "title": "Ingress p95 latency",
+      "type": "timeseries",
+      "targets": [{"expr": "histogram_quantile(0.95, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress=~\".*agent.*\"}[5m])) by (le))", "legendFormat": "p95", "refId": "A"}]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["tfs-agentic", "gateway", "ingress"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "title": "TFS Agentic Gateway",
+  "uid": "tfs-agentic-gateway",
+  "version": 1
+}

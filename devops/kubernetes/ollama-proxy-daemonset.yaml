@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ollama-proxy
+  labels:
+    app.kubernetes.io/name: ollama-proxy
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ollama-proxy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ollama-proxy
+    spec:
+      hostNetwork: true
+      tolerations:
+        - operator: Exists
+      containers:
+        - name: socat
+          image: alpine/socat:latest
+          args:
+            - TCP-LISTEN:11435,fork,reuseaddr
+            - TCP:10.1.1.89:11434
+          ports:
+            - containerPort: 11435
+              hostPort: 11435
+              protocol: TCP

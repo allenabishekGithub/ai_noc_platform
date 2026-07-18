@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agentic Module</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #131a33;
+    --panel-2: #1b2347;
+    --border: #2a3361;
+    --text: #e7ecff;
+    --muted: #98a2c7;
+    --accent: #7c8cff;
+    --accent-2: #4ad0a8;
+    --user: #2b3a7a;
+    --bot: #1d2647;
+    --danger: #ff6b6b;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #1a2353 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, #182f55 0%, transparent 55%),
+      var(--bg);
+    color: var(--text);
+    overflow: hidden;
+  }
+  .app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+
+  /* Sidebar */
+  aside {
+    background: linear-gradient(180deg, var(--panel) 0%, #0e1530 100%);
+    border-right: 1px solid var(--border);
+    padding: 22px 18px;
+    display: flex; flex-direction: column; gap: 18px;
+    overflow-y: auto;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand .dot {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: var(--shadow);
+  }
+  .brand h1 { font-size: 16px; margin: 0; letter-spacing: 0.3px; }
+  .brand small { color: var(--muted); display: block; font-size: 11px; }
+
+  .section-title {
+    text-transform: uppercase; font-size: 11px; letter-spacing: 0.12em;
+    color: var(--muted); margin: 4px 0 8px;
+  }
+
+  /* Drop zone */
+  .dropzone {
+    border: 1.5px dashed var(--border);
+    border-radius: 12px;
+    padding: 22px 14px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .dropzone:hover, .dropzone.drag {
+    border-color: var(--accent);
+    background: rgba(124,140,255,0.08);
+  }
+  .dropzone svg { width: 28px; height: 28px; opacity: 0.85; }
+  .dropzone p { margin: 8px 0 4px; font-size: 13px; }
+  .dropzone small { color: var(--muted); font-size: 11px; }
+  .dropzone input { display: none; }
+
+  .file-list { display: flex; flex-direction: column; gap: 6px; }
+  .file-item {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px;
+  }
+  .file-item .name {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;
+  }
+  .file-item .status {
+    font-size: 10px; padding: 2px 6px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .status.ok { background: rgba(74,208,168,0.18); color: var(--accent-2); }
+  .status.err { background: rgba(255,107,107,0.18); color: var(--danger); }
+  .status.pending { background: rgba(124,140,255,0.18); color: var(--accent); }
+
+  .info {
+    font-size: 12px; color: var(--muted); line-height: 1.55;
+    background: var(--panel-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .info b { color: var(--text); font-weight: 600; }
+  .rag-ok { color: var(--accent-2); }
+  .rag-empty { color: var(--muted); }
+  .rag-source {
+    display: block; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; margin-left: 4px;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, var(--accent), #5a6dff);
+    border: 0; color: white; font-weight: 600; font-size: 13px;
+    padding: 9px 14px; border-radius: 8px; cursor: pointer;
+    transition: transform 0.05s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover { box-shadow: 0 6px 18px rgba(124,140,255,0.35); }
+  .btn:active { transform: translateY(1px); }
+  .btn.ghost {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  /* Main */
+  main { display: flex; flex-direction: column; height: 100vh; min-width: 0; }
+  header.topbar {
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(11, 16, 32, 0.5); backdrop-filter: blur(12px);
+  }
+  header.topbar h2 { margin: 0; font-size: 15px; font-weight: 600; }
+  header.topbar .meta { color: var(--muted); font-size: 12px; }
+  header.topbar .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel-2); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 999px; font-size: 11px;
+  }
+  header.topbar .pill .led {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2);
+  }
+
+  .messages {
+    flex: 1; overflow-y: auto; padding: 24px 28px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .msg {
+    max-width: 78%; padding: 12px 16px; border-radius: 14px;
+    line-height: 1.55; font-size: 14px; white-space: pre-wrap;
+    word-wrap: break-word; animation: fadein 0.18s ease;
+  }
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .msg.user {
+    align-self: flex-end; background: var(--user);
+    border-bottom-right-radius: 4px;
+  }
+  .msg.bot {
+    align-self: flex-start; background: var(--bot);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+  .msg .who {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .trace {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(152, 162, 199, 0.18);
+  }
+  .trace details {
+    margin-top: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 10px;
+  }
+  .trace summary {
+    cursor: pointer;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .trace .meta-line {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .trace .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .trace .step {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.12);
+  }
+  .trace .step-title {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .trace .step-state {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .trace pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--muted);
+    margin: 8px 0 0;
+  }
+  .trace .dag {
+    margin-top: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.16);
+    padding: 6px;
+  }
+  .trace .dag svg {
+    display: block;
+    min-width: 100%;
+  }
+  .typing { display: inline-flex; gap: 4px; align-items: center; }
+  .typing span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--muted); animation: bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.15s; }
+  .typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .composer {
+    padding: 16px 28px 22px; border-top: 1px solid var(--border);
+    background: rgba(11, 16, 32, 0.6);
+  }
+  .composer .row {
+    display: flex; gap: 10px; align-items: flex-end;
+    background: var(--panel-2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 10px;
+  }
+  .composer textarea {
+    flex: 1; resize: none; border: 0; outline: 0;
+    background: transparent; color: var(--text);
+    font: inherit; font-size: 14px; line-height: 1.5;
+    max-height: 200px; min-height: 24px; padding: 4px 8px;
+  }
+  .composer textarea::placeholder { color: var(--muted); }
+  .composer .hint {
+    font-size: 11px; color: var(--muted); margin-top: 6px; text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <h1>Agentic Module</h1>
+        <small id="model-pill">loading...</small>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Knowledge Base</div>
+      <div class="info" id="ragStatus" style="margin-bottom: 10px;">
+        <div id="ragStatusText" style="color: var(--muted); font-style: italic;">Loading RAG status…</div>
+      </div>
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <p><b>Drop files</b> or click to upload</p>
+        <small>PDF - DOCX - TXT - MD - CSV - JSON</small>
+        <input id="fileInput" type="file" multiple
+               accept=".pdf,.docx,.txt,.md,.csv,.json,.py,.js,.ts,.html,.yaml,.yml" />
+      </label>
+      <div class="file-list" id="fileList" style="margin-top: 10px;"></div>
+    </div>
+
+    <div>
+      <div class="section-title">Endpoints</div>
+      <div class="info">
+        <div><b>Agent Card:</b> <code>/.well-known/agent-card.json</code></div>
+        <div><b>A2A:</b> <code>/a2a/message</code></div>
+        <div><b>OpenAI API:</b> <code>/v1/chat/completions</code></div>
+        <div><b>API Docs:</b> <a href="/docs" style="color: var(--accent);">/docs</a></div>
+      </div>
+    </div>
+
+    <button class="btn ghost" id="resetBtn">Clear conversation</button>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <h2>Chat</h2>
+        <div class="meta" id="agentId">-</div>
+      </div>
+      <div class="pill"><span class="led"></span> <span id="status">connected</span></div>
+    </header>
+
+    <div class="messages" id="messages">
+      <div class="msg bot">
+        <div class="who">Agentic Module</div>
+        Hi! I'm your local agent. Upload documents on the left to feed my
+        FAISS knowledge base, then ask me questions and I'll retrieve relevant
+        context before answering.
+      </div>
+    </div>
+
+    <div class="composer">
+      <div class="row">
+        <textarea id="input" rows="1"
+                  placeholder="Ask anything... (Shift+Enter for newline)"></textarea>
+        <button class="btn" id="sendBtn">Send</button>
+      </div>
+      <div class="hint">Enter to send - Shift+Enter for newline</div>
+    </div>
+  </main>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const messages = $('messages');
+const input = $('input');
+const sendBtn = $('sendBtn');
+const resetBtn = $('resetBtn');
+const fileInput = $('fileInput');
+const dropzone = $('dropzone');
+const fileList = $('fileList');
+const sessionId = 'web-' + Math.random().toString(36).slice(2, 10);
+
+let model = 'agentic-module';
+
+function detectBasePath() {
+  const path = window.location.pathname || '/';
+  const prefixes = ['/agentic'];
+  for (const prefix of prefixes) {
+    if (path === prefix || path.startsWith(prefix + '/')) return prefix;
+  }
+  return '';
+}
+
+const apiBasePath = detectBasePath();
+
+function apiUrl(path) {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${apiBasePath}${normalized}`;
+}
+
+// Auto-grow textarea
+input.addEventListener('input', () => {
+  input.style.height = 'auto';
+  input.style.height = Math.min(input.scrollHeight, 200) + 'px';
+});
+
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    send();
+  }
+});
+sendBtn.addEventListener('click', send);
+resetBtn.addEventListener('click', () => {
+  messages.innerHTML = '';
+  appendBot("Conversation cleared. What would you like to ask?");
+});
+
+function appendUser(text) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.innerHTML = `<div class="who">You</div>${escapeHtml(text)}`;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+function appendBot(text) {
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = `<div class="who">Agent</div>${escapeHtml(text)}`;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+function appendBotWithTrace(text, trace) {
+  const div = appendBot(text);
+  if (!trace) return div;
+  const traceDiv = document.createElement('div');
+  traceDiv.className = 'trace';
+  traceDiv.innerHTML = renderTrace(trace);
+  div.appendChild(traceDiv);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+function appendTyping() {
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.innerHTML = `<div class="who">Agent</div>
+    <div class="typing"><span></span><span></span><span></span></div>`;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+function prettyJson(value) {
+  return escapeHtml(JSON.stringify(value, null, 2));
+}
+function chunkText(text, size) {
+  const out = [];
+  for (let i = 0; i < text.length; i += size) out.push(text.slice(i, i + size));
+  return out;
+}
+function renderDagSvg(graph) {
+  const nodes = Array.isArray(graph?.nodes) ? graph.nodes : [];
+  if (!nodes.length) {
+    return '<div class="meta-line">No DAG nodes available for this response.</div>';
+  }
+
+  const width = 560;
+  const boxWidth = 460;
+  const boxX = 50;
+  const boxHeight = 82;
+  const gap = 18;
+  const totalHeight = nodes.length * boxHeight + Math.max(0, nodes.length - 1) * gap + 20;
+
+  const svgNodes = nodes.map((node, index) => {
+    const y = 10 + index * (boxHeight + gap);
+    const duration = node.duration_ms == null ? 'n/a' : `${node.duration_ms} ms`;
+    const params = JSON.stringify(node.parameters || {});
+    const triggers = Array.isArray(node.triggers) && node.triggers.length
+      ? node.triggers.join(', ')
+      : 'none';
+    const paramLines = chunkText(`params: ${params}`, 52).slice(0, 2);
+    const lines = [
+      `task: ${node.task || node.id}`,
+      `duration: ${duration}`,
+      `triggers: ${triggers}`,
+      ...paramLines,
+    ];
+    const text = lines.map((line, lineIndex) =>
+      `<tspan x="${boxX + 10}" dy="${lineIndex === 0 ? 0 : 12}">${escapeHtml(line)}</tspan>`
+    ).join('');
+    const arrow = index < nodes.length - 1
+      ? `<line x1="${width / 2}" y1="${y + boxHeight}" x2="${width / 2}" y2="${y + boxHeight + gap - 8}" stroke="#7c8cff" stroke-width="2" marker-end="url(#arrowhead)" />`
+      : '';
+    return `
+      <rect x="${boxX}" y="${y}" rx="8" ry="8" width="${boxWidth}" height="${boxHeight}" fill="#1d2647" stroke="#2a3361" />
+      <text x="${boxX + 10}" y="${y + 18}" fill="#e7ecff" font-size="9" font-family="monospace">${text}</text>
+      ${arrow}
+    `;
+  }).join('');
+
+  return `
+    <div class="dag">
+      <svg viewBox="0 0 ${width} ${totalHeight}" preserveAspectRatio="xMidYMin meet" aria-label="execution dag">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#7c8cff"></polygon>
+          </marker>
+        </defs>
+        ${svgNodes}
+      </svg>
+    </div>`;
+}
+function renderTrace(trace) {
+  const steps = Array.isArray(trace.steps) ? trace.steps : [];
+  const graph = trace.graph || {};
+  const stepsHtml = steps.length
+    ? `<div class="steps">${steps.map((step) => `
+        <div class="step">
+          <div class="step-title">${escapeHtml(step.title || step.kind || 'step')}</div>
+          <div class="step-state">${escapeHtml(step.status || 'unknown')}</div>
+          ${step.detail ? `<div class="meta-line">${escapeHtml(step.detail)}</div>` : ''}
+          ${step.output_summary ? `<div class="meta-line">${escapeHtml(step.output_summary)}</div>` : ''}
+          ${step.error ? `<div class="meta-line">Error: ${escapeHtml(step.error)}</div>` : ''}
+        </div>`).join('')}</div>`
+    : '<div class="meta-line">No explicit planner steps were recorded for this response.</div>';
+
+  return `
+    <div class="meta-line">Mode: ${escapeHtml(trace.planner_mode || 'reasoning')} | ${escapeHtml(trace.title || 'agent run')}</div>
+    <details open>
+      <summary>Execution DAG</summary>
+      ${renderDagSvg(graph)}
+    </details>
+    <details>
+      <summary>Tool calls (${steps.length})</summary>
+      ${stepsHtml}
+    </details>
+    <details>
+      <summary>Working Memory</summary>
+      <pre>${escapeHtml(trace.working_memory ? trace.working_memory : (trace.blackboard ? JSON.stringify(trace.blackboard, null, 2) : '(empty)'))}</pre>
+    </details>
+    <details>
+      <summary>Cache</summary>
+      <pre>${prettyJson(trace.cache || {})}</pre>
+    </details>`;
+}
+
+async function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.style.height = 'auto';
+  appendUser(text);
+  const typing = appendTyping();
+
+  try {
+    const res = await fetch(apiUrl('/v1/chat/completions'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'user', content: text }],
+        user: sessionId,
+      }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const answer = data.choices?.[0]?.message?.content || '(no response)';
+    const trace = data.agent_trace || null;
+    typing.remove();
+    appendBotWithTrace(answer, trace);
+  } catch (err) {
+    typing.remove();
+    const div = appendBot(`Error: ${err.message}`);
+    div.style.borderColor = 'var(--danger)';
+  }
+}
+
+// File upload
+['dragenter','dragover'].forEach(ev =>
+  dropzone.addEventListener(ev, (e) => {
+    e.preventDefault(); dropzone.classList.add('drag');
+  }));
+['dragleave','drop'].forEach(ev =>
+  dropzone.addEventListener(ev, (e) => {
+    e.preventDefault(); dropzone.classList.remove('drag');
+  }));
+dropzone.addEventListener('drop', (e) => {
+  if (e.dataTransfer?.files?.length) uploadFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) uploadFiles(fileInput.files);
+  fileInput.value = '';
+});
+
+async function uploadFiles(fileListObj) {
+  const fd = new FormData();
+  const pendingItems = [];
+  for (const f of fileListObj) {
+    fd.append('files', f);
+    pendingItems.push(addFileItem(f.name, 'pending', 'uploading...'));
+  }
+  try {
+    const res = await fetch(apiUrl('/upload'), { method: 'POST', body: fd });
+    const data = await res.json();
+    pendingItems.forEach(el => el.remove());
+    for (const r of data.files || []) {
+      const status = r.status === 'queued' ? 'ok' : 'err';
+      const note = r.status === 'queued'
+        ? `${r.chars.toLocaleString()} chars`
+        : (r.reason || r.status);
+      addFileItem(r.filename, status, note);
+    }
+    if (data.chunks_added) {
+      appendBot(`Ingested ${data.chunks_added} chunks into the FAISS index.`);
+      refreshRagStats();
+    }
+  } catch (err) {
+    pendingItems.forEach(el => el.remove());
+    addFileItem('upload', 'err', err.message);
+  }
+}
+
+function addFileItem(name, status, note) {
+  const div = document.createElement('div');
+  div.className = 'file-item';
+  div.innerHTML = `
+    <span class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+    <span class="status ${status}">${escapeHtml(note)}</span>`;
+  fileList.appendChild(div);
+  return div;
+}
+
+async function refreshRagStats() {
+  const el = $('ragStatusText');
+  try {
+    const r = await fetch(apiUrl('/rag/stats'));
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    const chunks = data.chunks ?? 0;
+    const sources = Array.isArray(data.sources) ? data.sources : [];
+    if (chunks === 0) {
+      el.innerHTML = `<span class="rag-empty">No documents ingested yet.</span>`;
+    } else {
+      const srcLines = sources.map(s =>
+        `<span class="rag-source">${escapeHtml(s)}</span>`
+      ).join('');
+      el.innerHTML =
+        `<span class="rag-ok"><b>${chunks}</b> chunks ingested</span>` +
+        (sources.length ? `<br><span style="font-size:10px;color:var(--muted);">Sources:</span>${srcLines}` : '');
+    }
+  } catch (_) {
+    el.textContent = 'RAG status unavailable.';
+  }
+}
+
+// Discover agent metadata
+(async () => {
+  try {
+    const r = await fetch(apiUrl('/.well-known/agent-card.json'));
+    const card = await r.json();
+    model = card.metadata?.model || model;
+    $('model-pill').textContent =
+      `${card.metadata?.provider || ''} - ${model}`.trim();
+    $('agentId').textContent = card.metadata?.agent_id || '';
+  } catch (_) { /* ignore */ }
+})();
+
+refreshRagStats();
+</script>
+</body>
+</html>

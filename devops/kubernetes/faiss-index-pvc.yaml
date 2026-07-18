@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: faiss-index-pvc
+  labels:
+    app.kubernetes.io/name: agentic-module
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

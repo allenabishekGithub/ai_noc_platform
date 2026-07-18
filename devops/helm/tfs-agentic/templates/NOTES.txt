@@ -1,0 +1,9 @@
+TFS Agentic Module has been deployed as release {{ .Release.Name }}.
+
+Agent service:
+  kubectl -n {{ .Release.Namespace }} port-forward service/{{ include "tfs-agentic.agentName" . }} 8800:{{ .Values.agent.service.port }}
+
+Then open: http://127.0.0.1:8800/healthz
+
+MCP service:
+  http://{{ include "tfs-agentic.mcpName" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.mcp.service.port }}/sse

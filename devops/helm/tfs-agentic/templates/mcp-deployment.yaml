@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tfs-agentic.mcpName" . }}
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+    {{- include "tfs-agentic.mcpSelectorLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.mcp.replicaCount }}
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      {{- include "tfs-agentic.mcpSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "tfs-agentic.labels" . | nindent 8 }}
+        {{- include "tfs-agentic.mcpSelectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.mcp.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: tfs-mcp-server
+          image: {{ printf "%s:%s" .Values.mcp.image.repository .Values.mcp.image.tag | quote }}
+          imagePullPolicy: {{ .Values.mcp.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "tfs-agentic.fullname" . }}-config
+            - secretRef:
+                name: {{ include "tfs-agentic.secretName" . }}
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.observability.otlpEndpoint | quote }}
+            - name: OTEL_SERVICE_NAME
+              value: tfs-agentic-mcp
+          ports:
+            - name: http
+              containerPort: {{ .Values.mcp.service.port }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 5
+          resources:
+            {{- toYaml .Values.mcp.resources | nindent 12 }}

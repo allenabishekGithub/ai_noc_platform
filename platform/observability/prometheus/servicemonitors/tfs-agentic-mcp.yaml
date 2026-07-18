@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: tfs-agentic-mcp
+  namespace: observability
+  labels:
+    release: kube-prometheus-stack
+    app.kubernetes.io/part-of: tfs-agentic-observability
+spec:
+  namespaceSelector:
+    matchNames:
+      - tfs-agentic
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tfs-agentic-mcp
+      app.kubernetes.io/instance: tfs-agentic
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s

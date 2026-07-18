@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tfs-agentic
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  description: TFS Agentic Module GitOps project
+  sourceRepos:
+    - https://github.com/allenabishekGithub/ai_noc_platform.git
+  destinations:
+    - namespace: tfs-agentic
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

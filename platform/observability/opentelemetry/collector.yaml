@@ -1,0 +1,140 @@
+# Deploy after Tempo and Loki. The collector accepts OTLP data from the two
+# application services and forwards traces to Tempo and logs to Loki.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opentelemetry-collector-config
+  namespace: observability
+  labels:
+    app.kubernetes.io/name: opentelemetry-collector
+    app.kubernetes.io/part-of: tfs-agentic-observability
+data:
+  collector.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+    processors:
+      memory_limiter:
+        check_interval: 1s
+        limit_mib: 256
+      resource:
+        attributes:
+          - action: upsert
+            key: deployment.environment
+            value: microk8s
+      batch:
+        timeout: 5s
+        send_batch_size: 1024
+    exporters:
+      debug:
+        verbosity: basic
+      otlp/tempo:
+        endpoint: ${env:TEMPO_OTLP_GRPC_ENDPOINT}
+        tls:
+          insecure: true
+      otlphttp/loki:
+        endpoint: ${env:LOKI_OTLP_HTTP_ENDPOINT}
+      prometheus:
+        endpoint: 0.0.0.0:8889
+    service:
+      telemetry:
+        metrics:
+          address: 0.0.0.0:8888
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, resource, batch]
+          exporters: [otlp/tempo, debug]
+        metrics:
+          receivers: [otlp]
+          processors: [memory_limiter, resource, batch]
+          exporters: [prometheus]
+        logs:
+          receivers: [otlp]
+          processors: [memory_limiter, resource, batch]
+          exporters: [otlphttp/loki, debug]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opentelemetry-collector
+  namespace: observability
+  labels:
+    app.kubernetes.io/name: opentelemetry-collector
+    app.kubernetes.io/part-of: tfs-agentic-observability
+spec:
+  selector:
+    app.kubernetes.io/name: opentelemetry-collector
+  ports:
+    - name: otlp-grpc
+      port: 4317
+      targetPort: otlp-grpc
+    - name: otlp-http
+      port: 4318
+      targetPort: otlp-http
+    - name: prometheus
+      port: 8889
+      targetPort: prometheus
+    - name: otel-metrics
+      port: 8888
+      targetPort: otel-metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opentelemetry-collector
+  namespace: observability
+  labels:
+    app.kubernetes.io/name: opentelemetry-collector
+    app.kubernetes.io/part-of: tfs-agentic-observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opentelemetry-collector
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: opentelemetry-collector
+    spec:
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.120.0
+          args: ["--config=/etc/otelcol-contrib/collector.yaml"]
+          env:
+            - name: TEMPO_OTLP_GRPC_ENDPOINT
+              value: tempo.observability.svc.cluster.local:4317
+            - name: LOKI_OTLP_HTTP_ENDPOINT
+              value: http://loki-gateway.observability.svc.cluster.local/otlp
+          ports:
+            - name: otlp-grpc
+              containerPort: 4317
+            - name: otlp-http
+              containerPort: 4318
+            - name: prometheus
+              containerPort: 8889
+            - name: otel-metrics
+              containerPort: 8888
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol-contrib
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: otel-metrics
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              memory: 512Mi
+      volumes:
+        - name: config
+          configMap:
+            name: opentelemetry-collector-config

@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Multi Smart Agents</title>
+<style>
+  :root {
+    --bg: #09111d;
+    --panel: #101b2d;
+    --panel2: #16243b;
+    --line: #29405f;
+    --text: #edf3ff;
+    --muted: #9db0cb;
+    --accent: #4db6ff;
+    --planned: #798598;
+    --processing: #f0bf55;
+    --completed: #54d98d;
+    --failed: #ff7f7f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: linear-gradient(180deg, #08101b, #0d1627); color: var(--text); font-family: Arial, sans-serif; }
+  .app { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; height: 100vh; }
+  aside { border-right: 1px solid var(--line); padding: 18px; background: var(--panel); display: flex; flex-direction: column; gap: 14px; }
+  main { padding: 18px; display: grid; grid-template-rows: auto 1fr auto; gap: 14px; min-width: 0; min-height: 0; height: 100vh; }
+  h1, h2, h3 { margin: 0 0 10px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .list { display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow: auto; }
+  .item { background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+  .muted { color: var(--muted); font-size: 12px; }
+  textarea { width: 100%; background: #0d1627; color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 10px; min-height: 84px; resize: vertical; }
+  button { background: linear-gradient(135deg, var(--accent), #266dff); color: white; border: 0; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+  .conversation-card { min-height: 0; display: flex; flex-direction: column; }
+  .request-card { position: sticky; bottom: 0; z-index: 2; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.20); }
+  .chat { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; overflow: auto; padding-right: 2px; }
+  .msg { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); white-space: pre-wrap; line-height: 1.45; }
+  .msg.user { background: #223457; }
+  .msg.assistant { background: #11233a; }
+  .msg.processing { border-color: var(--processing); color: #ffe3a3; }
+  .msg-text { white-space: pre-wrap; }
+  .pill { display: inline-block; margin-right: 8px; padding: 3px 8px; border-radius: 999px; font-size: 11px; background: #19304b; color: #b6f4dd; }
+  .graph-wrap { overflow: auto hidden; border: 1px solid var(--line); border-radius: 10px; background: #0d1627; margin-top: 10px; }
+  .legend { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .legend span { font-size: 12px; color: var(--muted); }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 4px; vertical-align: -2px; }
+  .topline { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .page-title { margin-bottom: 0; }
+  .small { font-size: 12px; color: var(--muted); }
+  .turn-meta, .turn-plan { margin-top: 8px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="card">
+      <h2>Agents Landscape</h2>
+      <div class="muted">New specialists appear here as the planner creates or reuses them.</div>
+      <div id="agentList" class="list" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h2>Persisted Specs</h2>
+      <div id="specList" class="list"></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="card">
+      <div class="topline">
+        <div>
+          <h1 class="page-title">Smart Multi-Agent Workspace</h1>
+          <div class="small">Each request gets its own reviewed execution plan and compact DAG.</div>
+        </div>
+        <div id="statusLine" class="small">Idle</div>
+      </div>
+    </div>
+
+    <div class="card conversation-card">
+      <h3>Conversation</h3>
+      <div id="chat" class="chat"></div>
+    </div>
+
+    <div class="card request-card">
+      <textarea id="requestInput" placeholder="Type a request. Example: which links connect routers with DCs?"></textarea>
+      <div style="margin-top:10px">
+        <button id="submitBtn">Submit Request</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const state = {
+  agents: [],
+  specs: [],
+  executionViews: {},
+  pollHandles: {},
+};
+
+function $(id) { return document.getElementById(id); }
+
+function statusColor(status) {
+  if (status === 'processing') return getComputedStyle(document.documentElement).getPropertyValue('--processing').trim();
+  if (status === 'completed') return getComputedStyle(document.documentElement).getPropertyValue('--completed').trim();
+  if (status === 'failed') return getComputedStyle(document.documentElement).getPropertyValue('--failed').trim();
+  return getComputedStyle(document.documentElement).getPropertyValue('--planned').trim();
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+function appendMessage(role, text, extraClass='') {
+  const div = document.createElement('div');
+  div.className = `msg ${role} ${extraClass}`.trim();
+  const body = document.createElement('div');
+  body.className = 'msg-text';
+  body.textContent = text;
+  div.appendChild(body);
+  $('chat').appendChild(div);
+  $('chat').scrollTop = $('chat').scrollHeight;
+  return div;
+}
+
+function appendExecutionMessage() {
+  const root = document.createElement('div');
+  root.className = 'msg assistant processing';
+
+  const body = document.createElement('div');
+  body.className = 'msg-text';
+  body.textContent = 'Processing...';
+  root.appendChild(body);
+
+  const meta = document.createElement('div');
+  meta.className = 'turn-meta';
+  meta.textContent = 'Preparing plan...';
+  root.appendChild(meta);
+
+  const plan = document.createElement('div');
+  plan.className = 'turn-plan';
+  plan.textContent = '';
+  root.appendChild(plan);
+
+  const graphWrap = document.createElement('div');
+  graphWrap.className = 'graph-wrap';
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '720');
+  svg.setAttribute('height', '120');
+  svg.setAttribute('viewBox', '0 0 720 120');
+  graphWrap.appendChild(svg);
+  root.appendChild(graphWrap);
+
+  const legend = document.createElement('div');
+  legend.className = 'legend';
+  legend.innerHTML = `
+    <span><i class="swatch" style="background:var(--planned)"></i>Planned</span>
+    <span><i class="swatch" style="background:var(--processing)"></i>Processing</span>
+    <span><i class="swatch" style="background:var(--completed)"></i>Completed</span>
+    <span><i class="swatch" style="background:var(--failed)"></i>Failed</span>
+  `;
+  root.appendChild(legend);
+
+  $('chat').appendChild(root);
+  $('chat').scrollTop = $('chat').scrollHeight;
+  return { root, body, meta, plan, svg, graphWrap };
+}
+
+function renderAgents() {
+  const root = $('agentList');
+  root.innerHTML = '';
+  for (const agent of state.agents) {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `<div><b>${escapeHtml(agent.display_name)}</b></div>
+      <div class="muted">${escapeHtml(agent.id)}</div>
+      <div class="muted">${escapeHtml(agent.memory_summary || 'No memory summary yet.')}</div>`;
+    root.appendChild(div);
+  }
+}
+
+function renderSpecs() {
+  const root = $('specList');
+  root.innerHTML = '';
+  for (const spec of state.specs) {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `<div><b>${escapeHtml(spec.name)}</b></div>
+      <div class="muted">${escapeHtml(spec.specialization)}</div>
+      <div class="muted">${escapeHtml(spec.model_name)}</div>`;
+    root.appendChild(div);
+  }
+}
+
+async function refreshLists() {
+  state.agents = await fetch('/api/agents').then(r => r.json());
+  state.specs = await fetch('/api/specs').then(r => r.json());
+  renderAgents();
+  renderSpecs();
+}
+
+function computeLevels(nodes, edges) {
+  const indegree = new Map(nodes.map(n => [n.id, 0]));
+  const outgoing = new Map(nodes.map(n => [n.id, []]));
+  for (const edge of edges) {
+    if (!indegree.has(edge.target) || !outgoing.has(edge.source)) continue;
+    indegree.set(edge.target, indegree.get(edge.target) + 1);
+    outgoing.get(edge.source).push(edge.target);
+  }
+  const queue = [];
+  const level = new Map();
+  for (const node of nodes) {
+    if ((indegree.get(node.id) || 0) === 0) {
+      queue.push(node.id);
+      level.set(node.id, 0);
+    }
+  }
+  while (queue.length) {
+    const current = queue.shift();
+    const currentLevel = level.get(current) || 0;
+    for (const next of outgoing.get(current) || []) {
+      indegree.set(next, (indegree.get(next) || 1) - 1);
+      level.set(next, Math.max(level.get(next) || 0, currentLevel + 1));
+      if ((indegree.get(next) || 0) === 0) queue.push(next);
+    }
+  }
+  for (const node of nodes) {
+    if (!level.has(node.id)) level.set(node.id, nodes.length);
+  }
+  return level;
+}
+
+function renderGraph(trace, svg) {
+  const nodes = Array.isArray(trace?.nodes) ? trace.nodes : [];
+  const edges = Array.isArray(trace?.edges) ? trace.edges : [];
+  if (!nodes.length) {
+    svg.setAttribute('viewBox', '0 0 720 120');
+    svg.setAttribute('width', '720');
+    svg.setAttribute('height', '120');
+    svg.innerHTML = '';
+    if (svg.parentElement) {
+      svg.parentElement.style.height = '120px';
+    }
+    return;
+  }
+
+  const level = computeLevels(nodes, edges);
+  const grouped = new Map();
+  for (const node of nodes) {
+    const l = level.get(node.id) || 0;
+    if (!grouped.has(l)) grouped.set(l, []);
+    grouped.get(l).push(node);
+  }
+
+  const nodeWidth = 112;
+  const nodeHeight = 28;
+  const xGap = 142;
+  const yGap = 40;
+  const xStart = 18;
+  const yStart = 18;
+  const positions = new Map();
+  const levels = [...grouped.keys()].sort((a, b) => a - b);
+  let maxRows = 1;
+  for (const l of levels) {
+    const items = grouped.get(l);
+    maxRows = Math.max(maxRows, items.length);
+    items.forEach((node, index) => {
+      positions.set(node.id, {
+        x: xStart + l * xGap,
+        y: yStart + index * yGap,
+      });
+    });
+  }
+
+  const width = Math.max(720, xStart * 2 + levels.length * xGap + nodeWidth);
+  const height = Math.max(120, yStart * 2 + maxRows * yGap);
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  if (svg.parentElement) {
+    svg.parentElement.style.height = `${height}px`;
+  }
+
+  const parts = [];
+  for (const edge of edges) {
+    const a = positions.get(edge.source);
+    const b = positions.get(edge.target);
+    if (!a || !b) continue;
+    const x1 = a.x + nodeWidth;
+    const y1 = a.y + nodeHeight / 2;
+    const x2 = b.x;
+    const y2 = b.y + nodeHeight / 2;
+    const midX = (x1 + x2) / 2;
+    parts.push(
+      `<path d="M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}" stroke="#5e7396" stroke-width="1.5" fill="none" />`
+    );
+  }
+
+  for (const node of nodes) {
+    const pos = positions.get(node.id);
+    const fill = statusColor(node.status);
+    const tooltip = escapeHtml(`${node.label}\nkind=${node.kind}\nstatus=${node.status}\n${node.model ? `model=${node.model}\n` : ''}${node.details || ''}`);
+    parts.push(`
+      <g>
+        <rect x="${pos.x}" y="${pos.y}" rx="8" ry="8" width="${nodeWidth}" height="${nodeHeight}" fill="${fill}" fill-opacity="0.18" stroke="${fill}" stroke-width="1.6">
+          <title>${tooltip}</title>
+        </rect>
+        <text x="${pos.x + nodeWidth / 2}" y="${pos.y + 18}" text-anchor="middle" font-size="10" font-family="Arial" fill="#edf3ff">
+          ${escapeHtml(node.label)}
+        </text>
+      </g>
+    `);
+  }
+  svg.innerHTML = parts.join('');
+}
+
+function updateExecutionCard(view, trace) {
+  const reviewNotes = Array.isArray(trace?.plan?.review_notes) ? trace.plan.review_notes : [];
+  const planSummary = trace?.plan?.summary || '';
+  const revision = trace?.plan?.revision || 0;
+  const verified = trace?.plan?.verified ? 'verified' : 'draft';
+  view.meta.innerHTML = `<span class="pill">${escapeHtml(trace.id)}</span><span class="pill">${escapeHtml(trace.status)}</span><span class="pill">plan r${revision} ${verified}</span>`;
+  view.plan.textContent = planSummary ? `${planSummary}${reviewNotes.length ? ' Review: ' + reviewNotes.join(' ') : ''}` : '';
+  renderGraph(trace, view.svg);
+  $('chat').scrollTop = $('chat').scrollHeight;
+}
+
+async function pollExecution(executionId) {
+  if (state.pollHandles[executionId]) clearInterval(state.pollHandles[executionId]);
+  state.pollHandles[executionId] = setInterval(async () => {
+    try {
+      const response = await fetch(`/api/executions/${executionId}`);
+      const trace = await response.json();
+      if (!response.ok) throw new Error(trace.detail || `HTTP ${response.status}`);
+      const view = state.executionViews[executionId];
+      if (!view) return;
+      updateExecutionCard(view, trace);
+      await refreshLists();
+      if (trace.status === 'completed' || trace.status === 'failed') {
+        clearInterval(state.pollHandles[executionId]);
+        delete state.pollHandles[executionId];
+        view.root.classList.remove('processing');
+        view.body.textContent = trace.status === 'completed'
+          ? (trace.reply || 'No reply generated.')
+          : `Failed: ${trace.error || 'Unknown error'}`;
+        $('statusLine').textContent = trace.status === 'completed' ? 'Idle' : 'Execution failed';
+      }
+    } catch (err) {
+      clearInterval(state.pollHandles[executionId]);
+      delete state.pollHandles[executionId];
+      const view = state.executionViews[executionId];
+      if (view) {
+        view.root.classList.remove('processing');
+        view.body.textContent = `Failed: ${err.message}`;
+      }
+      $('statusLine').textContent = 'Execution failed';
+    }
+  }, 1000);
+}
+
+$('submitBtn').onclick = async () => {
+  const message = $('requestInput').value.trim();
+  if (!message) return;
+  $('requestInput').value = '';
+  appendMessage('user', message);
+  const view = appendExecutionMessage();
+  $('statusLine').textContent = 'Submitting request';
+  try {
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, auto_create: true }),
+    });
+    const trace = await response.json();
+    if (!response.ok) throw new Error(trace.detail || `HTTP ${response.status}`);
+    state.executionViews[trace.id] = view;
+    updateExecutionCard(view, trace);
+    $('statusLine').textContent = 'Execution processing';
+    await pollExecution(trace.id);
+  } catch (err) {
+    view.root.classList.remove('processing');
+    view.body.textContent = `Failed: ${err.message}`;
+    view.meta.textContent = 'Submission failed';
+    $('statusLine').textContent = 'Submission failed';
+  }
+};
+
+$('requestInput').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && event.ctrlKey) {
+    event.preventDefault();
+    $('submitBtn').click();
+  }
+});
+
+refreshLists();
+</script>
+</body>
+</html>

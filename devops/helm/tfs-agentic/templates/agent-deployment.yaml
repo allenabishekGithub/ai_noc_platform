@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tfs-agentic.agentName" . }}
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+    {{- include "tfs-agentic.agentSelectorLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.agent.replicaCount }}
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      {{- include "tfs-agentic.agentSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "tfs-agentic.labels" . | nindent 8 }}
+        {{- include "tfs-agentic.agentSelectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- with .Values.agent.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: agentic-module
+          image: {{ printf "%s:%s" .Values.agent.image.repository .Values.agent.image.tag | quote }}
+          imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "tfs-agentic.fullname" . }}-config
+            - secretRef:
+                name: {{ include "tfs-agentic.secretName" . }}
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.observability.otlpEndpoint | quote }}
+            - name: OTEL_SERVICE_NAME
+              value: tfs-agentic-agent
+          ports:
+            - name: http
+              containerPort: {{ .Values.agent.service.port }}
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 30
+          resources:
+            {{- toYaml .Values.agent.resources | nindent 12 }}
+          {{- if .Values.persistence.faiss.enabled }}
+          volumeMounts:
+            - name: faiss-index
+              mountPath: {{ .Values.config.faissIndexPath }}
+          {{- end }}
+      {{- if .Values.persistence.faiss.enabled }}
+      volumes:
+        - name: faiss-index
+          persistentVolumeClaim:
+            claimName: {{ default (printf "%s-faiss" (include "tfs-agentic.fullname" .)) .Values.persistence.faiss.existingClaim }}
+      {{- end }}

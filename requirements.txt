@@ -1,0 +1,46 @@
+# Agentic Module - pinned, compatible dependency set.
+# Tested cohort: LangChain 0.3.x (stable), Python 3.10-3.12.
+
+# --- Configuration / web ----------------------------------------------------
+python-dotenv>=1.0,<2
+fastapi>=0.115,<0.130
+uvicorn>=0.30,<0.35
+pydantic>=2.7,<3
+httpx>=0.27,<1
+requests>=2.31,<3
+python-multipart>=0.0.9,<1     # multipart/form-data for file uploads
+
+# --- Document parsers (for /upload endpoint) -------------------------------
+pypdf>=4.0,<6                  # PDF text extraction
+python-docx>=1.1,<2            # .docx extraction
+PyYAML>=6.0,<7                 # YAML topology / config ingestion
+networkx>=3.2,<4               # graph store for parsed topology
+
+# --- LangChain (mutually pinned 0.3.x cohort) -------------------------------
+langchain>=0.3.27,<0.4
+langchain-core>=0.3.73,<0.4
+langchain-community>=0.3.27,<0.4
+langchain-text-splitters>=0.3.10,<0.4
+
+# Provider integrations (all 0.3.x, depend on langchain-core 0.3.x)
+langchain-openai>=0.3.29,<0.4          # used for both `openai` and `openwebui` providers
+langchain-ollama>=0.3.10,<0.4
+langchain-huggingface>=0.3.1,<0.4
+langchain-anthropic>=0.3.22,<0.4
+
+# --- Vector store + embeddings ---------------------------------------------
+# faiss-cpu 1.9.0 has the broadest manylinux/macOS wheel coverage for py3.10-3.12.
+faiss-cpu>=1.9.0,<1.10
+# sentence-transformers 3.x/4.x are compatible with langchain-huggingface 0.3.x.
+sentence-transformers>=3.0,<5
+
+# --- MCP (Model Context Protocol) ------------------------------------------
+# Streamable-HTTP transport stable since 1.13.
+mcp>=1.13,<2
+# --- Observability -----------------------------------------------------------
+prometheus-client>=0.21,<1
+opentelemetry-api>=1.28,<2
+opentelemetry-sdk>=1.28,<2
+opentelemetry-exporter-otlp-proto-grpc>=1.28,<2
+opentelemetry-instrumentation-fastapi>=0.49b0,<1
+opentelemetry-instrumentation-httpx>=0.49b0,<1

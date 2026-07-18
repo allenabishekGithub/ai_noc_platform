@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tfs-agentic.agentName" . }}
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+    {{- include "tfs-agentic.agentSelectorLabels" . | nindent 4 }}
+spec:
+  type: {{ .Values.agent.service.type }}
+  selector:
+    {{- include "tfs-agentic.agentSelectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.agent.service.port }}
+      targetPort: http

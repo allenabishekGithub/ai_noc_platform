@@ -1,0 +1,28 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {
+      "title": "MCP request rate",
+      "type": "timeseries",
+      "targets": [{"expr": "sum(rate(tfs_mcp_http_requests_total[5m]))", "legendFormat": "requests/s", "refId": "A"}]
+    },
+    {
+      "title": "MCP p95 request latency",
+      "type": "timeseries",
+      "targets": [{"expr": "histogram_quantile(0.95, sum(rate(tfs_mcp_http_request_duration_seconds_bucket[5m])) by (le))", "legendFormat": "p95", "refId": "A"}]
+    },
+    {
+      "title": "MCP requests by route and status",
+      "type": "table",
+      "targets": [{"expr": "sum by (path, status) (increase(tfs_mcp_http_requests_total[1h]))", "format": "table", "instant": true, "refId": "A"}]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["tfs-agentic", "mcp"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "title": "TFS MCP Server",
+  "uid": "tfs-agentic-mcp-server",
+  "version": 1
+}

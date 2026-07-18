@@ -1,0 +1,6 @@
+apiVersion: v2
+name: tfs-agentic
+description: Agentic Module and TFS MCP server for TeraFlowSDN
+type: application
+version: 0.1.0
+appVersion: "dev"

@@ -1,0 +1,45 @@
+{{- if .Values.agent.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "tfs-agentic.agentName" . }}
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+  {{- with .Values.agent.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with .Values.agent.ingress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- with .Values.agent.ingress.tls }}
+  tls:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- if .Values.agent.ingress.hosts }}
+    {{- range .Values.agent.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          - path: {{ .path | default $.Values.agent.ingress.path | quote }}
+            pathType: {{ .pathType | default $.Values.agent.ingress.pathType }}
+            backend:
+              service:
+                name: {{ include "tfs-agentic.agentName" $ }}
+                port:
+                  name: http
+    {{- end }}
+    {{- else }}
+    - http:
+        paths:
+          - path: {{ .Values.agent.ingress.path | quote }}
+            pathType: {{ .Values.agent.ingress.pathType }}
+            backend:
+              service:
+                name: {{ include "tfs-agentic.agentName" . }}
+                port:
+                  name: http
+    {{- end }}
+{{- end }}

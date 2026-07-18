@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tfs-mcp-server
+  labels:
+    app.kubernetes.io/name: tfs-mcp-server
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: tfs-mcp-server
+  ports:
+    - name: http
+      port: 3002
+      targetPort: http

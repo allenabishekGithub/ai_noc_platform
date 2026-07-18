@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "tfs-agentic.fullname" . }}-config
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+data:
+  AGENT_API_HOST: {{ .Values.config.agentApiHost | quote }}
+  AGENT_API_PORT: {{ .Values.config.agentApiPort | quote }}
+  FAISS_INDEX_PATH: {{ .Values.config.faissIndexPath | quote }}
+  LLM_PROVIDER: {{ .Values.config.llmProvider | quote }}
+  LLM_MODEL: {{ .Values.config.llmModel | quote }}
+  OLLAMA_BASE_URL: {{ .Values.config.ollamaBaseUrl | quote }}
+  OLLAMA_NUM_CTX: {{ .Values.config.ollamaNumCtx | quote }}
+  LLM_TEMPERATURE: {{ .Values.config.llmTemperature | quote }}
+  EMBEDDING_MODEL: {{ .Values.config.embeddingModel | quote }}
+  AGENT_VERBOSE: {{ .Values.config.agentVerbose | quote }}
+  AGENT_MAX_ITERATIONS: {{ .Values.config.agentMaxIterations | quote }}
+  AGENT_EXPOSE_RAW_MCP_TOOLS: {{ .Values.config.agentExposeRawMcpTools | quote }}
+  MCP_HARD_RESPONSE_CAP: {{ .Values.config.mcpHardResponseCap | quote }}
+  A2A_PEERS: {{ .Values.config.a2aPeers | quote }}
+  DEFAULT_CONTEXT_UUID: {{ .Values.config.defaultContextUuid | quote }}
+  DEFAULT_TOPOLOGY_UUID: {{ .Values.config.defaultTopologyUuid | quote }}
+  CONTROLLER_CACHE_TTL_SECONDS: {{ .Values.config.controllerCacheTtlSeconds | quote }}
+  TFS_NBI_URL: {{ .Values.config.tfsNbiUrl | quote }}
+  TFS_NBI_PREFIX: {{ .Values.config.tfsNbiPrefix | quote }}
+  TFS_MCP_PORT: {{ .Values.config.tfsMcpPort | quote }}
+  MCP_SERVERS: {{ default (printf "http://%s:%v/sse" (include "tfs-agentic.mcpName" .) .Values.mcp.service.port) .Values.config.mcpServers | quote }}
+  OPENAI_BASE_URL: {{ .Values.config.openaiBaseUrl | quote }}
+  OPENWEBUI_BASE_URL: {{ .Values.config.openwebuiBaseUrl | quote }}
+  AGENT_PUBLIC_URL: {{ .Values.config.agentPublicUrl | quote }}

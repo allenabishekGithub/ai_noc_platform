@@ -1,0 +1,412 @@
+2026-05-26T08:58:54.686151612Z [Worker-10][2026-05-26 08:58:54,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:58] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:58:54.686334641Z [Worker-9][2026-05-26 08:58:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:58] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:04.686975774Z [Worker-8][2026-05-26 08:59:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:04.687008544Z [Worker-10][2026-05-26 08:59:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:14.686588841Z [Worker-11][2026-05-26 08:59:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:14.686614942Z [Worker-14][2026-05-26 08:59:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:24.686637689Z [Worker-8][2026-05-26 08:59:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:24.686661430Z [Worker-12][2026-05-26 08:59:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:34.686338549Z [Worker-8][2026-05-26 08:59:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:34.686769799Z [Worker-7][2026-05-26 08:59:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:44.687089658Z [Worker-10][2026-05-26 08:59:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:44.687122188Z [Worker-7][2026-05-26 08:59:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:54.686958565Z [Worker-10][2026-05-26 08:59:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T08:59:54.686989664Z [Worker-11][2026-05-26 08:59:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 08:59] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:04.686728935Z [Worker-13][2026-05-26 09:00:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:04.686757745Z [Worker-10][2026-05-26 09:00:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:14.687042435Z [Worker-9][2026-05-26 09:00:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:14.687087355Z [Worker-13][2026-05-26 09:00:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:24.686445686Z [Worker-13][2026-05-26 09:00:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:24.686661545Z [Worker-12][2026-05-26 09:00:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:34.687105998Z [Worker-13][2026-05-26 09:00:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:34.687134978Z [Worker-9][2026-05-26 09:00:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:44.686873179Z [Worker-13][2026-05-26 09:00:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:44.686901299Z [Worker-14][2026-05-26 09:00:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:49.961036229Z [Worker-7][2026-05-26 09:00:49,960] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:00] 10.1.227.234 GET /tfs-api/contexts? 200 O
+K
+2026-05-26T09:00:50.082222757Z [Worker-12][2026-05-26 09:00:50,081] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 10.1.227.234 GET /tfs-api/context/43813b
+af-195e-5da6-af20-b3d0922e71a7/topologies? 200 OK
+2026-05-26T09:00:50.349081341Z [Worker-12][2026-05-26 09:00:50,348] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 10.1.227.234 GET /tfs-api/context/43813b
+af-195e-5da6-af20-b3d0922e71a7/topology_details/c76135e3-24a8-5e92-9bed-c3c91393
+59c8? 200 OK
+2026-05-26T09:00:50.487611007Z [Worker-12][2026-05-26 09:00:50,487] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 10.1.227.234 GET /tfs-api/context/43813b
+af-195e-5da6-af20-b3d0922e71a7/services? 200 OK
+2026-05-26T09:00:54.686859335Z [Worker-7][2026-05-26 09:00:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:00:54.686893535Z [Worker-14][2026-05-26 09:00:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:00] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:04.687003554Z [Worker-13][2026-05-26 09:01:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:04.687033764Z [Worker-10][2026-05-26 09:01:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:14.686901689Z [Worker-10][2026-05-26 09:01:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:14.687123129Z [Worker-14][2026-05-26 09:01:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:24.686561072Z [Worker-7][2026-05-26 09:01:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:24.686948042Z [Worker-14][2026-05-26 09:01:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:34.687007962Z [Worker-10][2026-05-26 09:01:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:34.687825721Z [Worker-10][2026-05-26 09:01:34,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:44.686513064Z [Worker-10][2026-05-26 09:01:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:44.686546283Z [Worker-8][2026-05-26 09:01:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:54.686695303Z [Worker-10][2026-05-26 09:01:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:01:54.687251531Z [Worker-12][2026-05-26 09:01:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:01] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:04.686619242Z [Worker-8][2026-05-26 09:02:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:04.686675302Z [Worker-13][2026-05-26 09:02:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:14.686251044Z [Worker-10][2026-05-26 09:02:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:14.687041241Z [Worker-12][2026-05-26 09:02:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:24.686662165Z [Worker-9][2026-05-26 09:02:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:24.686703304Z [Worker-11][2026-05-26 09:02:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:34.686667467Z [Worker-12][2026-05-26 09:02:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:34.686694877Z [Worker-14][2026-05-26 09:02:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:44.684968174Z [Worker-12][2026-05-26 09:02:44,684] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:44.684983734Z [Worker-14][2026-05-26 09:02:44,684] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:54.686250250Z [Worker-13][2026-05-26 09:02:54,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:02:54.686276599Z [Worker-14][2026-05-26 09:02:54,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:02] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:04.686788037Z [Worker-13][2026-05-26 09:03:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:04.686820216Z [Worker-11][2026-05-26 09:03:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:14.687206350Z [Worker-13][2026-05-26 09:03:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:14.687240300Z [Worker-10][2026-05-26 09:03:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:24.686680470Z [Worker-10][2026-05-26 09:03:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:24.686704641Z [Worker-13][2026-05-26 09:03:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:34.686877933Z [Worker-12][2026-05-26 09:03:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:34.686903062Z [Worker-14][2026-05-26 09:03:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:44.686770109Z [Worker-14][2026-05-26 09:03:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:44.686817149Z [Worker-13][2026-05-26 09:03:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:54.687683031Z [Worker-7][2026-05-26 09:03:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:03:54.687836121Z [Worker-8][2026-05-26 09:03:54,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:03] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:04.686964022Z [Worker-10][2026-05-26 09:04:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:04.686993292Z [Worker-12][2026-05-26 09:04:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:13.422631104Z [Worker-8][2026-05-26 09:04:13,422] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 10.1.227.234 GET /tfs-api/contexts? 200 O
+K
+2026-05-26T09:04:13.527290837Z [Worker-8][2026-05-26 09:04:13,526] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 10.1.227.234 GET /tfs-api/context/43813ba
+f-195e-5da6-af20-b3d0922e71a7/topologies? 200 OK
+2026-05-26T09:04:13.820056820Z [Worker-8][2026-05-26 09:04:13,819] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 10.1.227.234 GET /tfs-api/context/43813ba
+f-195e-5da6-af20-b3d0922e71a7/topology_details/c76135e3-24a8-5e92-9bed-c3c913935
+9c8? 200 OK
+2026-05-26T09:04:13.989592788Z [Worker-7][2026-05-26 09:04:13,989] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 10.1.227.234 POST /tfs-api/context/43813b
+af-195e-5da6-af20-b3d0922e71a7/services? 200 OK
+2026-05-26T09:04:14.686904239Z [Worker-10][2026-05-26 09:04:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:14.687397339Z [Worker-9][2026-05-26 09:04:14,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:14.700292385Z [Worker-7][2026-05-26 09:04:14,693] ERROR:nbi.ser
+vice.NbiApplication:Exception on /tfs-api/context/43813baf-195e-5da6-af20-b3d092
+2e71a7/service/3c5e4a1c-22ca-48a6-9270-72eb21b0ad18 [PUT]
+2026-05-26T09:04:14.700313155Z Traceback (most recent call last):
+2026-05-26T09:04:14.700434275Z   File "/var/teraflow/nbi/service/tfs_api/Resourc
+es.py", line 220, in put
+2026-05-26T09:04:14.700438095Z     return format_grpc_to_json(self.service_clien
+t.UpdateService(grpc_service(svc)))
+2026-05-26T09:04:14.700449335Z   File "/var/teraflow/service/client/ServiceClien
+t.py", line 58, in UpdateService
+2026-05-26T09:04:14.700453145Z     response = self.stub.UpdateService(request)
+2026-05-26T09:04:14.700468535Z     raise _InactiveRpcError(state)
+2026-05-26T09:04:14.700472485Z grpc._channel._InactiveRpcError: <_InactiveRpcErr
+or of RPC that terminated with:
+2026-05-26T09:04:14.700485665Z  debug_error_string = "{"created":"@1779786254.69
+2211056","description":"Error received from peer ipv4:10.152.183.242:3030","file
+":"src/core/lib/surface/call.cc","file_line":966,"grpc_message":"'str' object ha
+s no attribute 'keys'","grpc_status":13}"
+2026-05-26T09:04:14.702284321Z [Worker-7][2026-05-26 09:04:14,702] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 10.1.227.234 PUT /tfs-api/context/43813ba
+f-195e-5da6-af20-b3d0922e71a7/service/3c5e4a1c-22ca-48a6-9270-72eb21b0ad18? 500 
+INTERNAL SERVER ERROR
+2026-05-26T09:04:24.685757996Z [Worker-14][2026-05-26 09:04:24,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:24.686144566Z [Worker-9][2026-05-26 09:04:24,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:34.686735046Z [Worker-13][2026-05-26 09:04:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:34.686766726Z [Worker-11][2026-05-26 09:04:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:44.686539808Z [Worker-7][2026-05-26 09:04:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:44.686575827Z [Worker-10][2026-05-26 09:04:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:54.686835598Z [Worker-14][2026-05-26 09:04:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:04:54.687388036Z [Worker-8][2026-05-26 09:04:54,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:04] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:04.686252302Z [Worker-14][2026-05-26 09:05:04,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:04.686576771Z [Worker-8][2026-05-26 09:05:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:14.687125996Z [Worker-8][2026-05-26 09:05:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:14.687154796Z [Worker-7][2026-05-26 09:05:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:24.686656224Z [Worker-7][2026-05-26 09:05:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:24.686678805Z [Worker-8][2026-05-26 09:05:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:34.686489150Z [Worker-8][2026-05-26 09:05:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:34.686514600Z [Worker-14][2026-05-26 09:05:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:44.686327771Z [Worker-7][2026-05-26 09:05:44,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:44.686416721Z [Worker-14][2026-05-26 09:05:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:54.686909181Z [Worker-9][2026-05-26 09:05:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:05:54.686957061Z [Worker-12][2026-05-26 09:05:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:05] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:04.685898334Z [Worker-13][2026-05-26 09:06:04,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:04.686611862Z [Worker-9][2026-05-26 09:06:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:14.686909299Z [Worker-7][2026-05-26 09:06:14,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:14.686958609Z [Worker-10][2026-05-26 09:06:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:24.686626858Z [Worker-9][2026-05-26 09:06:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:24.687457866Z [Worker-13][2026-05-26 09:06:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:34.686664948Z [Worker-11][2026-05-26 09:06:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:34.687642335Z [Worker-7][2026-05-26 09:06:34,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:44.686386888Z [Worker-8][2026-05-26 09:06:44,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:44.686410457Z [Worker-9][2026-05-26 09:06:44,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:54.686636841Z [Worker-9][2026-05-26 09:06:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:06:54.686767531Z [Worker-14][2026-05-26 09:06:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:06] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:04.686684774Z [Worker-8][2026-05-26 09:07:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:04.686715923Z [Worker-9][2026-05-26 09:07:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:14.687017894Z [Worker-12][2026-05-26 09:07:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:14.687043984Z [Worker-9][2026-05-26 09:07:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:24.686721929Z [Worker-9][2026-05-26 09:07:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:24.686777948Z [Worker-13][2026-05-26 09:07:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:34.686906265Z [Worker-13][2026-05-26 09:07:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:34.687245083Z [Worker-9][2026-05-26 09:07:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:44.686222657Z [Worker-7][2026-05-26 09:07:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:44.686593046Z [Worker-11][2026-05-26 09:07:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:54.686478111Z [Worker-14][2026-05-26 09:07:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:07:54.686619151Z [Worker-10][2026-05-26 09:07:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:07] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:04.687679989Z [Worker-14][2026-05-26 09:08:04,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:04.687766298Z [Worker-8][2026-05-26 09:08:04,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:14.686154338Z [Worker-10][2026-05-26 09:08:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:14.686180928Z [Worker-9][2026-05-26 09:08:14,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:24.686203478Z [Worker-10][2026-05-26 09:08:24,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:24.686248299Z [Worker-14][2026-05-26 09:08:24,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:34.687013904Z [Worker-11][2026-05-26 09:08:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:34.687039934Z [Worker-13][2026-05-26 09:08:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:44.686188090Z [Worker-11][2026-05-26 09:08:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:44.686217210Z [Worker-13][2026-05-26 09:08:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:54.686634826Z [Worker-11][2026-05-26 09:08:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:08:54.686742997Z [Worker-13][2026-05-26 09:08:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:08] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:04.685940904Z [Worker-12][2026-05-26 09:09:04,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:04.685964055Z [Worker-10][2026-05-26 09:09:04,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:14.686429846Z [Worker-11][2026-05-26 09:09:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:14.686455866Z [Worker-10][2026-05-26 09:09:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:24.686232648Z [Worker-8][2026-05-26 09:09:24,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:24.686297717Z [Worker-10][2026-05-26 09:09:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:34.686480665Z [Worker-8][2026-05-26 09:09:34,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:34.686545846Z [Worker-11][2026-05-26 09:09:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:44.686181462Z [Worker-9][2026-05-26 09:09:44,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:44.686503731Z [Worker-12][2026-05-26 09:09:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:54.687118223Z [Worker-11][2026-05-26 09:09:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:09:54.687438443Z [Worker-12][2026-05-26 09:09:54,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:09] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:04.686303078Z [Worker-9][2026-05-26 09:10:04,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:04.686331297Z [Worker-12][2026-05-26 09:10:04,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:14.686630677Z [Worker-10][2026-05-26 09:10:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:14.686667927Z [Worker-13][2026-05-26 09:10:14,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:24.686406468Z [Worker-14][2026-05-26 09:10:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:24.687136476Z [Worker-12][2026-05-26 09:10:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:34.685535569Z [Worker-10][2026-05-26 09:10:34,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:34.685562990Z [Worker-13][2026-05-26 09:10:34,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:44.686399794Z [Worker-10][2026-05-26 09:10:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:44.686437975Z [Worker-12][2026-05-26 09:10:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:54.686764771Z [Worker-9][2026-05-26 09:10:54,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:10:54.686827360Z [Worker-10][2026-05-26 09:10:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:10] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:04.685851069Z [Worker-7][2026-05-26 09:11:04,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:04.686736497Z [Worker-9][2026-05-26 09:11:04,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:14.686239933Z [Worker-13][2026-05-26 09:11:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:14.686656002Z [Worker-7][2026-05-26 09:11:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:24.686904277Z [Worker-7][2026-05-26 09:11:24,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:24.686966108Z [Worker-10][2026-05-26 09:11:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:34.686184624Z [Worker-9][2026-05-26 09:11:34,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:34.686490033Z [Worker-14][2026-05-26 09:11:34,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:44.686340379Z [Worker-10][2026-05-26 09:11:44,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:44.686369109Z [Worker-12][2026-05-26 09:11:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:54.686112496Z [Worker-14][2026-05-26 09:11:54,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:11:54.686127676Z [Worker-9][2026-05-26 09:11:54,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:11] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:04.686821600Z [Worker-14][2026-05-26 09:12:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:04.686849980Z [Worker-9][2026-05-26 09:12:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:14.685968438Z [Worker-13][2026-05-26 09:12:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:14.685992648Z [Worker-11][2026-05-26 09:12:14,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:24.686975611Z [Worker-11][2026-05-26 09:12:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:24.688565027Z [Worker-11][2026-05-26 09:12:24,688] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:34.687389450Z [Worker-11][2026-05-26 09:12:34,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:34.687415539Z [Worker-13][2026-05-26 09:12:34,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:44.686446820Z [Worker-12][2026-05-26 09:12:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:44.686483191Z [Worker-7][2026-05-26 09:12:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:54.687619851Z [Worker-12][2026-05-26 09:12:54,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:12:54.688100489Z [Worker-7][2026-05-26 09:12:54,687] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:12] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:04.686866596Z [Worker-7][2026-05-26 09:13:04,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:04.686885647Z [Worker-12][2026-05-26 09:13:04,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:14.687099331Z [Worker-7][2026-05-26 09:13:14,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:14.687850350Z [Worker-13][2026-05-26 09:13:14,687] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:24.685883812Z [Worker-9][2026-05-26 09:13:24,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:24.686903989Z [Worker-11][2026-05-26 09:13:24,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:34.686124582Z [Worker-14][2026-05-26 09:13:34,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:34.686179422Z [Worker-8][2026-05-26 09:13:34,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:44.687131683Z [Worker-8][2026-05-26 09:13:44,686] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:44.687188743Z [Worker-11][2026-05-26 09:13:44,686] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:54.685557224Z [Worker-11][2026-05-26 09:13:54,685] INFO:nbi.ser
+vice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK
+2026-05-26T09:13:54.685574524Z [Worker-9][2026-05-26 09:13:54,685] INFO:nbi.serv
+ice.NbiApplication:[2026-May-26 09:13] 192.168.1.65 GET /healthz? 200 OK

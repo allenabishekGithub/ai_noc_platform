@@ -1,0 +1,61 @@
+{{- if .Values.ollama.proxy.enabled }}
+{{- if not .Values.ollama.proxy.hostIP }}{{ fail "ollama.proxy.hostIP is required when ollama.proxy.enabled=true" }}{{ end }}
+{{- if not .Values.ollama.proxy.targetHost }}{{ fail "ollama.proxy.targetHost is required when ollama.proxy.enabled=true" }}{{ end }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tfs-agentic.fullname" . }}-ollama
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+spec:
+  ports:
+    - name: http
+      port: 11434
+      targetPort: {{ .Values.ollama.proxy.listenPort }}
+      protocol: TCP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: {{ include "tfs-agentic.fullname" . }}-ollama
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+subsets:
+  - addresses:
+      - ip: {{ .Values.ollama.proxy.hostIP | quote }}
+    ports:
+      - name: http
+        port: {{ .Values.ollama.proxy.listenPort }}
+        protocol: TCP
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "tfs-agentic.fullname" . }}-ollama-proxy
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "tfs-agentic.fullname" . }}-ollama-proxy
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "tfs-agentic.labels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "tfs-agentic.fullname" . }}-ollama-proxy
+    spec:
+      hostNetwork: true
+      tolerations:
+        - operator: Exists
+      containers:
+        - name: socat
+          image: {{ .Values.ollama.proxy.image | quote }}
+          args:
+            - TCP-LISTEN:{{ .Values.ollama.proxy.listenPort }},fork,reuseaddr
+            - TCP:{{ .Values.ollama.proxy.targetHost }}:{{ .Values.ollama.proxy.targetPort }}
+          ports:
+            - containerPort: {{ .Values.ollama.proxy.listenPort }}
+              hostPort: {{ .Values.ollama.proxy.listenPort }}
+              protocol: TCP
+{{- end }}

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: agentic-module
+  labels:
+    app.kubernetes.io/name: agentic-module
+    app.kubernetes.io/part-of: tfs-agentic
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: agentic-module
+  ports:
+    - name: http
+      port: 8800
+      targetPort: http

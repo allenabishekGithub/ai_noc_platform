@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tfs-agentic.mcpName" . }}
+  labels:
+    {{- include "tfs-agentic.labels" . | nindent 4 }}
+    {{- include "tfs-agentic.mcpSelectorLabels" . | nindent 4 }}
+spec:
+  type: {{ .Values.mcp.service.type }}
+  selector:
+    {{- include "tfs-agentic.mcpSelectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.mcp.service.port }}
+      targetPort: http

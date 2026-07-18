@@ -1,0 +1,64 @@
+services:
+  tfs-mcp-server:
+    image: ${TFS_MCP_IMAGE:-tfs-agentic-tfs-mcp-server:dev}
+    build:
+      context: ../..
+      dockerfile: devops/docker/tfs-mcp-server.Dockerfile
+    container_name: tfs-mcp-server
+    environment:
+      TFS_NBI_URL: ${TFS_NBI_URL:-http://tfs-controller.example.invalid}
+      TFS_NBI_PREFIX: ${TFS_NBI_PREFIX:-/tfs-api}
+      TFS_NBI_USER: ${TFS_NBI_USER:-admin}
+      TFS_NBI_PASS: ${TFS_NBI_PASS:-admin}
+      TFS_MCP_PORT: "3002"
+    ports:
+      - "${TFS_MCP_PORT:-3002}:3002"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3002/health', timeout=5).read()"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  agentic-module:
+    image: ${AGENTIC_IMAGE:-tfs-agentic-agentic-module:dev}
+    build:
+      context: ../..
+      dockerfile: devops/docker/agentic-module.Dockerfile
+    container_name: agentic-module
+    depends_on:
+      tfs-mcp-server:
+        condition: service_healthy
+    environment:
+      AGENT_API_HOST: 0.0.0.0
+      AGENT_API_PORT: "8800"
+      FAISS_INDEX_PATH: /app/faiss_index
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      LLM_MODEL: ${LLM_MODEL:-qwen2.5:7b-instruct}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama.example.invalid:11434}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      MCP_SERVERS: http://tfs-mcp-server:3002/sse
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-8192}
+      LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
+      AGENT_VERBOSE: ${AGENT_VERBOSE:-false}
+      AGENT_MAX_ITERATIONS: ${AGENT_MAX_ITERATIONS:-15}
+      AGENT_EXPOSE_RAW_MCP_TOOLS: ${AGENT_EXPOSE_RAW_MCP_TOOLS:-false}
+      MCP_HARD_RESPONSE_CAP: ${MCP_HARD_RESPONSE_CAP:-20000}
+      DEFAULT_CONTEXT_UUID: ${DEFAULT_CONTEXT_UUID:-admin}
+      DEFAULT_TOPOLOGY_UUID: ${DEFAULT_TOPOLOGY_UUID:-admin}
+      CONTROLLER_CACHE_TTL_SECONDS: ${CONTROLLER_CACHE_TTL_SECONDS:-120}
+    ports:
+      - "${AGENT_API_PORT:-8800}:8800"
+    volumes:
+      - ../../faiss_index:/app/faiss_index
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8800/healthz', timeout=5).read()"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped

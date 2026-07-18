@@ -1,0 +1,25 @@
+# TFS MCP Server - runtime dependencies.
+# Standalone: this component runs independently of the TFS NAF agent.
+#
+# Install:
+#   python -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
+
+# --- MCP (Model Context Protocol) ------------------------------------------
+mcp>=1.13,<2
+
+# --- HTTP client for talking to the TFS NBI REST API -----------------------
+httpx>=0.27,<1
+
+# --- Environment variable loader (.env support) -----------------------------
+python-dotenv>=1.0,<2
+
+# --- ASGI server + framework for SSE transport -----------------------------
+uvicorn>=0.30,<0.35
+starlette>=0.37,<1
+# --- Observability -----------------------------------------------------------
+prometheus-client>=0.21,<1
+opentelemetry-api>=1.28,<2
+opentelemetry-sdk>=1.28,<2
+opentelemetry-exporter-otlp-proto-grpc>=1.28,<2
+opentelemetry-instrumentation-asgi>=0.49b0,<1

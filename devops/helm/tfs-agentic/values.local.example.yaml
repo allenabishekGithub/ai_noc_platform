@@ -1,0 +1,26 @@
+# Copy to values.local.yaml, fill in environment-specific values, and keep it
+# out of Git. Prefer secrets.existingSecret for production credentials.
+agent:
+  image:
+    repository: localhost:32000/tfs-agentic-agentic-module
+    tag: dev
+    pullPolicy: Always
+
+mcp:
+  image:
+    repository: localhost:32000/tfs-agentic-tfs-mcp-server
+    tag: dev
+    pullPolicy: Always
+
+config:
+  tfsNbiUrl: http://nbiservice.tfs.svc.cluster.local:8080
+  llmProvider: ollama
+  llmModel: qwen2.5:7b-instruct
+  ollamaBaseUrl: http://ollama.example.invalid:11434
+  agentPublicUrl: ""
+
+secrets:
+  tfsNbiUser: admin
+  tfsNbiPass: change-me
+  openaiApiKey: ""
+  anthropicApiKey: ""

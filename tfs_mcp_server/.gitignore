@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+faiss_index/
+agentic_module.log
+*.db
