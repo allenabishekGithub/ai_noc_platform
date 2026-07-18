@@ -1,5 +1,7 @@
 # Agentic Module
 
+> Start with the illustrated [Two SDN Domains, One Agentic Workflow](results/two-domain-l2vpn-story.md), which explains the two-controller architecture, local MCP operations, cross-domain A2A L2VPN provisioning, and Grafana observability.
+
 A LangChain-powered AI agent that manages TeraFlowSDN through MCP, with the
 current implementation centered on:
 
@@ -1322,7 +1324,7 @@ The application should reach `Synced` and `Healthy`. Do not use `deploy-helm.sh`
 
 ### Two-VM A2A and cross-domain L2VPN deployment
 
-For an illustrated end-to-end walkthrough of the two independent TFS domains, local MCP operations, cross-domain A2A orchestration, and Grafana observability, see [Two SDN Domains, One Agentic Workflow](docs/two-domain-l2vpn-story.md).
+For an illustrated end-to-end walkthrough of the two independent TFS domains, local MCP operations, cross-domain A2A orchestration, and Grafana observability, see [Two SDN Domains, One Agentic Workflow](results/two-domain-l2vpn-story.md).
 
 The current lab contains two Agentic instances, each associated with a different TeraFlowSDN domain. They communicate over the Kubernetes ingress using their EC2 private addresses and the `/agentic` path:
 
